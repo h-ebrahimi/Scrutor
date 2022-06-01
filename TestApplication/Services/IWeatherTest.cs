@@ -2,6 +2,6 @@
 {
     public interface IWeatherTest
     {
-
+        string Do();
     }
 }

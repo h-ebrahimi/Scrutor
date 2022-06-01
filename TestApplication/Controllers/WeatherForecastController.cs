@@ -9,12 +9,12 @@ namespace TestApplication.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger;
         private readonly IWeatherTest _test;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, IWeatherTest test)
+        public WeatherForecastController( IWeatherTest test)
         {
-            _logger = logger;
+            //_logger = logger;
             _test = test;
         }
 
@@ -22,7 +22,7 @@ namespace TestApplication.Controllers
         public async Task<IActionResult> Get()
         {
 
-            return Ok(_test.GetType());
+            return Ok(_test.Do());
         }
     }
 }

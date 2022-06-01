@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TestApplication.Services;
 
 namespace TestApplication
 {
@@ -19,12 +18,10 @@ namespace TestApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Scan(a =>
-                a.FromAssemblyOf<IWeatherTest>()
-                 .AddClasses()
-                 .AsSelf()
-                 .WithScopedLifetime()
-            );
+            services.Scan(scan =>
+                scan.FromCallingAssembly()
+                    .AddClasses()
+                    .AsMatchingInterface());
             services.AddControllers();
         }
 
